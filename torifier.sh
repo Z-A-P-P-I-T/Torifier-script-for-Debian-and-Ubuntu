@@ -112,7 +112,6 @@ break ;;
         "No")
 clear            
 echo "********** .You choose to set torsocks maually. ************** "
-	    # optionally call a function or run some code here
            break ;;
         "Quit")
 	    echo "User requested exit"
@@ -130,8 +129,15 @@ $ source torsocks on
 
 $ source torsocks off
 (( Tor mode deactivated ))
-" 
+"
+echo "Please wait, checking your ip outside the TOR network"
+	wget -qO - https://api.ipify.org; echo
+		sleep 0.25
 
+echo "Please wait, checking your TOR ip."
+	torsocks wget -qO - https://api.ipify.org; echo 		
+		sleep 0.25
+		
 echo "             Thank you for using this script.                 "
 echo "                    Have a great day!                         "
 echo "--------------------------------------------------------------"
