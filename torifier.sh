@@ -10,9 +10,9 @@ echo "
 "
 sleep 0.5
 echo "                                                        
-Author: 	rock-dotcom
-Creation Date:  20/3-21
-Description: 	Torproxy for Ubuntu and Debian Distros 
+Author: 	rock-dotcom (zappit)
+Creation Date:  20/3-21 - modified 28/6-22
+Description: 	Torproxy for Ubuntu and Debian Distros bash and zsh shell compatible. 
 "
 
 sleep 2
@@ -81,44 +81,64 @@ for all new shell sessions and after reboot?
 "
 sleep 0.5
 
-PS3='
-Option = '
-q1=("Yes" "No")
-select choose in "${q1[@]}"; do
-    case $choose in
-        "Yes")
-            echo "
+while true; do
+    read -p "Do you want to have shell persistancy y/n? " yn
+    case $yn in
+        [Yy]* ) 
+        
+        echo "
 Turn's torsocks on permanently
 		"
 sleep 2
-source torsocks off 
+#do not use source to call for torsocks
+torsocks off
+
 sleep 2
+
 echo  "
- Modifing ~/.bachrc - Please Wait
-"
+ Modifing ~/.bachrc - Please Wait"
+ 
 echo ". torsocks on" >> ~/.bashrc
+
 sleep 2
+
+echo "
+ Modifing ~/.zhsrc - Please Wait
+"
+
+echo ". torsocks on" >> ~/.zhsrc
+
+sleep 2
+
 echo " Restarting TOR - Please Wait
 "
 sudo systemctl restart tor
+
 sleep 2
+
 echo " Setting torsock on - Please Wait
 "
 sleep 2
-source torsocks on
+#do not use source to call for torsocks
+torsocks on
+
 sleep 2
+
 clear
-break ;;
-        "No")
+
+break;;
+        
+        
+        [Nn]* ) 
 clear            
 echo "********** .You choose to set torsocks maually. ************** "
+sleep 1
            break ;;
-        "Quit")
-	    echo "User requested exit"
-	    exit
-	    ;;
-        *) echo "invalid option $REPLY";;
+
+
+#        * ) echo "Please answer yes or no.";;
     esac
+    
 done
 
 echo "--------------------------------------------------------------
