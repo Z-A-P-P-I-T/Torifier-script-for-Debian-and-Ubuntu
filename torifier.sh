@@ -90,8 +90,11 @@ while true; do
 Turn's torsocks on permanently
 		"
 sleep 2
-#do not use source to call for torsocks
+
+#Both medthod for Enabeling/Disabeling added
+# ->
 torsocks off
+source torsocks off
 
 sleep 2
 
@@ -119,8 +122,11 @@ sleep 2
 echo " Setting torsock on - Please Wait
 "
 sleep 2
-#do not use source to call for torsocks
+
+#Both medthod for Enabeling/Disabeling added
+# ->
 torsocks on
+source torsocks on
 
 sleep 2
 
